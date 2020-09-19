@@ -9,6 +9,9 @@ rabbitmq_db_password: "123456"
 
 preend_certbot: True
 nginx_reverse_proxy_port: "8065"
+nginx_certbot: True
+nginx_appname: "drupal"
+nginx_vhost_mode: "reverse"
 
 # role_mysql
 mysql_version: "5.7"       
@@ -25,7 +28,6 @@ mysql_databases:
  
 mysql_users:
  - name: rabbitmq
-   host: localhost
    priv: 'rabbitmq.*:ALL'
 
 # 初始化MySQL root密码
