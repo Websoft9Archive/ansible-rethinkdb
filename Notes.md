@@ -1,154 +1,174 @@
-# RabbitMQ Notes
+# RethinkDb
 
-组件名称：RabbitMQ-Server  
-安装文档：https://www.rabbitmq.com/download.html  
-配置文档：https://www.rabbitmq.com/admin-guide.html  
-支持平台： Debian家族 | RHEL家族 | Windows | Kubernetes |Docker  
+责任人：hzq
 
-责任人：helin
+---
+
+文档：[安装](https://rethinkdb.com/docs/install/ubuntu/)|[配置](https://rethinkdb.com/docs/start-on-startup/)
+
+平台：Ubuntu | CentOS | Debian | macOs等数十种操作系统
 
 ## 概要
 
-RabbitMQ是一款开源的MQ系统，它包含RabbitMQ-Server和RabbitMQ-Client，服务器上运行的是RabbitMQ-Server
-
+RethinkDB是第一个为实时Web从头开始构建的、开源的、可扩展的JSON数据库。
 ## 环境要求
 
-* 程序语言：Java 
-* 应用服务器：自带
-* 数据库：无
-* 依赖组件：Erlang
-* 其他：
-
+- 程序语言：C++
+- 服务器：Linux 32/64、Mac OS version > 10.7
+- 客户端：支持其语言(Ruby、Python、Java、JavaScript/Node.js、C#/.NET、Go、Php等)的任何平台
+- 服务器最小容量：RAM > 2GB
 ## 安装说明
+官方提供包安装和源码安装两种方式，经过评估，这里使用包安装的方式。
 
-官方建议使用其自身提供的erlang和rabbitmq-server的仓库，不建议使用操作系统自带的仓库或其他第三方仓库。同时，官方提供了自动安装仓库的自动化脚本。
+1. 配置软件源
+2. 使用包管理工具进行安装
+3. 配置rethinkdb
+4. 运行
 
-下面基于不同的安装平台，分别进行安装说明。
+<b>配置软件源</b>
 
-### CentOS
-
+centos7：
 ```shell
-# 分别安装erlang源和rabbitmq-server源
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
-
-# 安装
-yum install erlang rabbitmq-server -y
+sudo cat << EOF > /etc/yum.repos.d/rethinkdb.repo
+[rethinkdb]
+name=RethinkDB
+enabled=1
+baseurl=https://download.rethinkdb.com/repository/centos/7/x86_64/
+gpgkey=https://download.rethinkdb.com/repository/raw/pubkey.gpg
+gpgcheck=1
+EOF
+sudo yum update -y
 ```
-
-### Ubuntu
-
+Ubuntu:
 ```shell
-# 分别安装erlang源和rabbitmq-server源
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.deb.sh | sudo bash
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.deb.sh | sudo bash
 
-# 安装
+source /etc/lsb-release && echo "deb https://download.rethinkdb.com/repository/ubuntu-$DISTRIB_CODENAME $DISTRIB_CODENAME main" | sudo tee /etc/apt/sources.list.d/rethinkdb.list
+wget -qO- https://download.rethinkdb.com/repository/raw/pubkey.gpg | sudo apt-key add -
+
 sudo apt-get update -y
-apt install erlang rabbitmq-server -y
+
 ```
+<b>安装</b>
+
+Centos 7:
+
+ yum install rethinkdb -y
+
+Ubuntu:
+
+sudo apt-get install rethinkdb -y
+
+<b>创建rethinkdb的数据目录</b>
+
+```shell
+sudo mkdir -p /data/rethinkdb/rethinkdb_data
+
+rethinkdb create -d /data/rethinkdb/rethinkdb_data
+
+sudo chown -R rethinkdb.rethinkdb /data/rethinkdb/rethinkdb_data
+# 创建配置文件并进行配置
+sudo cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/instance.conf
+
+sudo vim /etc/rethinkdb/instances.d/instance.conf
+#需要更改directory=配置文件中的行以指向RethinkDB数据目录
+#directory=/data/rethinkdb/rethinkdb_data
+sed -i 32a\directory=/data/rethinkdb/rethinkdb_data /etc/rethinkdb/instances.d/instance.conf
+```
+<b>systemd设置启动</b>
+1. 创建/usr/lib/tmpfiles.d/rethinkdb.conf包含以下内容的文件：
+```shell
+touch /usr/lib/tmpfiles.d/rethinkdb.conf
+sudo sh -c  "echo 'd /run/rethinkdb 0755 rethinkdb rethinkdb -' > /usr/lib/tmpfiles.d/rethinkdb.conf"
+```
+2. 并创建服务文件/usr/lib/systemd/system/rethinkdb.service：
+
+```sh
+sudo mkdir -p /usr/lib/systemd/system
+sudo touch /usr/lib/systemd/system/rethinkdb.service
+sudo echo "[Unit]
+Description=RethinkDB database server for instance 
+[Service]
+User=rethinkdb
+Group=rethinkdb
+ExecStart=/usr/bin/rethinkdb serve --config-file /etc/rethinkdb/instances.d/instance.conf
+KillMode=process
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target" > /usr/lib/systemd/system/rethinkdb.service
+
+sudo chmod 644 /usr/lib/tmpfiles.d/rethinkdb.conf /usr/lib/systemd/system/rethinkdb.service 
+#***sudo systemctl enable rethinkdb
+```
+#设置开机启动
+
+sudo systemctl daemon-reload
+
+sudo systemctl enable rethinkdb
+
+sudo systemctl start rethinkdb
+```
+
+
+安装时候遇到问题:
+-  Error: Package: rethinkdb-2.4.1-30488.x86_64(rethinkdb)
+        Requires: glibc >=2.28
+        Install: glibc-2,17-307.e17.1.x86_64(@base)
+
+    解决方案：更换对应版本的软件源可以解决（问题是安装了不匹配的仓库和包）
+    yum clean all
+    yum update -y
+# 重新安装
+sudo yum install rethinkdb -y
+
+
+
+
 
 ## 路径
+日志路径:   /data/rethinkdb/rethinkdb_data/log_file
 
-* 程序路径：/usr/lib/rabbitmq/lib/rabbitmq_server-*
-* 日志路径：/var/log/rabbitmq  
-* 配置文件路径：  
-* 其他...
+配置文件：  /etc/rethinkdb/instances.d/instance.conf
 
+数据路径:   /data/rethinkdb/rethinkdb_data
+
+程序路径：  /usr/bin/rethinkdb
 ## 配置
-
-安装完成后，需要依次完成如下配置
-
-```shell
-# Set RabbitMQ
-- name: Restart RabbitMQ
-  shell: systemctl start rabbitmq-server
-
-- name: Enable the management console of RabbitMQ
-  shell: rabbitmq-plugins enable rabbitmq_management
-
-- name: Create administrator for RabbitMQ console
-  shell: |
-    rabbitmqctl add_user admin admin
-    rabbitmqctl set_user_tags admin administrator
-```
-
+    sudo cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/instance.conf
+    sudo vim /etc/rethinkdb/instances.d/instance.conf
+配置文件：[配置文件支持的选项](https://rethinkdb.com/docs/config-file/)
 ## 账号密码
 
-### 数据库密码
+<p>一个新的RethinkDB群集始终有一个名为的用户admin；该用户始终在全局范围内拥有所有权限，并且无法删除该用户。默认情况下，admin用户没有密码。您可以通过更新admin用户文档或在启动时指定--initial-password 命令行选项来更改此设置。如果以前没有设置用户密码，请设置该密码；用于auto选择要打印到的随机密码stdout</p>
 
-如果有数据库
-
-* 数据库安装方式：包管理工具自带 or 自行安装
-* 账号密码：
-
-### 后台账号
-
-如果有后台账号
-
-* 登录地址
-* 账号密码
-* 密码修改方案：最好是有命令行修改密码的方案
-
-
+Web管理UI始终像admin用户一样进行连接，`并跳过身份验证过程（即，该连接未使用密码）`。虽然无法对Web UI进行密码保护，但可以使用--bind-http命令行选项限制它接受连接的地址。
 ## 服务
-
-本项目安装后自动生成：rabbitmq-server 服务
-
-备注：如果开机没有服务，程序无法运行的情况下，需要自行编写服务后存放到项目中
-
-服务的模板如下：
-
-```
-[Unit]
-Description=Redmine
-After=nginx.service
-[Service]
-Environment=RAILS_ENV=production
-Type=simple
-WorkingDirectory=/data/wwwroot/redmine
-ExecStart=/usr/local/bin/puma -b tcp://127.0.0.1:9292 -e production 
-User=redmine
-[Install]
-WantedBy=multi-user.target
-```
-
+无
 ## 环境变量
-
-列出需要增加的环境变量以及增加环境变量的命令：
-
-* 名称 | 路径
-
+无
 ## 版本号
-
-通过如下的命令获取主要组件的版本号: 
-
+```shell
+sudo sh -c "rethinkdb --version >> /data/rethinkdb/rethinkdb_install_version.txt"
+cat /data/rethinkdb/rethinkdb_install_version.txt
 ```
-# Check RabbitMQ version
-sudo rabbitmqctl status | grep RabbitMQ*
-
-# Check Erlang version
-ls /usr/lib64/erlang
-```
-
 ## 常见问题
 
-#### 有没有管理控制台？
+<b>有没有管理控制台?</b>
 
-*http:// 公网 IP:15672* 即可访问控制台，系统默认存在一个无法通过外网访问的guest/guest账号
+有，通过[http://公网IP:8080]()访问
 
-#### 本项目需要开启哪些端口？
+本项目需要开启哪些端口?
+|item|port|
+|-----------|----|
+|侦听集群|29015|
+|侦听客户|28015|
+|侦听http管理|8080|
 
-| item      | port  |
-| --------- | ----- |
-| lustering | 25672 |
-| AMQP      | 5672  |
-| http      | 15672 |
 
-#### 有没有CLI工具？
+<br >
 
-有，通过 `rabbitmqctl` 查看工具的说明
+-  请注意，默认情况下，RethinkDB仅打开绑定到的连接 `localhost`，以防止网络上未经授权的客户端连接到服务器。用`rethinkdb --bind all`选项允许从网络上的任何地方进行连接。如果网络受到保护，它将很好地工作。
 
-## 日志
+-  看到“收到无效的群集标题”消息？ RethinkDB使用三个端口进行操作-HTTP Web UI端口，客户端驱动程序端口和集群内流量端口。您可以将浏览器连接到Web UI端口以直接从浏览器管理群集，并将客户端驱动程序连接到客户端驱动程序端口以从应用程序运行查询。如果您正在运行群集，则不同的RethinkDB节点将通过群集内流量端口相互通信。
 
-* 2020-04-14 完成CentOS安装研究
+- 该消息received invalid clustering header表示存在端口不匹配，并且某些东西连接到错误的端口。例如，如果不小心指向浏览器或将客户端驱动程序连接到群集内流量端口，则通常会收到此消息。

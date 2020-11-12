@@ -1,0 +1,17 @@
+# pre-installation
+- name: Add Rethinkdb repositories 
+  yum_repository:
+    name: rethinkdb
+    description: rethinkdb repo
+    file: rethinkdb
+    baseurl: https://download.rethinkdb.com/repository/centos/{{ansible_distribution_major_version}}/x86_64/
+    gpgkey: https://download.rethinkdb.com/repository/raw/pubkey.gpg
+    gpgcheck: yes
+    enabled: yes
+
+# install Rethinkdb
+# httpd-tools: get htpasswd 
+- name: Install RethinkDb and httpd-httpd
+  yum:
+    name: [rethinkdb,httpd-tools]
+    update_cache: yes

@@ -1,0 +1,19 @@
+  
+# 核心任务
+
+- name: rethinkdb
+  hosts: all
+  become: yes
+  become_method: sudo
+
+  vars_files:
+    - vars/main.yml
+  
+  roles:
+    - {role: role_common, tags: "role_common"}  
+    - {role: role_cloud, tags: "role_cloud"} 
+    - {role: role_nginx, tags: "role_nginx"} 
+    - {role: rethinkdb, tags: "rethinkdb"}
+    - {role: role_init, tags: "role_init"} 
+    - {role: role_preend, tags: "role_preend"} 
+    - {role: role_end, tags: "role_end"}

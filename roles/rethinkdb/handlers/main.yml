@@ -1,0 +1,3 @@
+- name: check_rethinkdb_service
+  debug:
+    var: check_rethinkdb_service.stdout
