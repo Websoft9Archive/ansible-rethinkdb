@@ -16,9 +16,7 @@
   failed_when: false
 
 - name: Copy rethinkdb configure file
-  copy:
-    src: /etc/rethinkdb/default.conf.sample
-    dest: /etc/rethinkdb/instances.d/instance.conf
+  shell: cp /etc/rethinkdb/default.conf.sample  /etc/rethinkdb/instances.d/instance.conf
 
 - name: Copy rethinkdb service file
   copy:
