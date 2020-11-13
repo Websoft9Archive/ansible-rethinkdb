@@ -12,7 +12,9 @@
     group: rethinkdb
 
 - name: Add rethinkdb data
-  shell: rethinkdb create -d /data/wwwroot/rethindb_data 
+  shell: | 
+    rethinkdb create -d /data/wwwroot/rethindb_data 
+    chown -R rethinkdb.rethinkdb /data/wwwroot/rethindb_data 
   failed_when: false
 
 - name: Copy rethinkdb configure file
