@@ -7,5 +7,5 @@ init_application:
     username: "admin"
     password: "admin"
     commands: 
-      - htpasswd -bc /etc/nginx/.htpasswd admin $newpassword
+      - htpasswd -b /etc/nginx/.htpasswd admin $new_password
       - systemctl restart nginx
