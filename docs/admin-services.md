@@ -5,41 +5,17 @@ These commands you must know when you using the rethinkdb of Websoft9
 ## rethinkdb
 
 ```shell
-sudo systemctl start rethinkdb-server
-sudo systemctl stop rethinkdb-server
-sudo systemctl restart rethinkdb-server
-sudo systemctl status rethinkdb-server
-
-# you can use this debug mode if rethinkdb service can't run
-rethinkdb-server console
+sudo systemctl start rethinkdb
+sudo systemctl stop rethinkdb
+sudo systemctl restart rethinkdb
+sudo systemctl status rethinkdb
 ```
 
-## rethinkdb
+### Nginx
 
 ```shell
-sudo systemctl start rethinkdb-server
-sudo systemctl stop rethinkdb-server
-sudo systemctl restart rethinkdb-server
-sudo systemctl status rethinkdb-server
-
-# you can use this debug mode if rethinkdb service can't run
-rethinkdb-server console
-```
-
-### MySQL
-
-```shell
-sudo systemctl start mysql
-sudo systemctl stop mysql
-sudo systemctl restart mysql
-sudo systemctl status mysql
-```
-
-### Redis
-
-```shell
-systemctl start redis
-systemctl stop redis
-systemctl restart redis
-systemctl status redis
+sudo systemctl start nginx
+sudo systemctl stop nginx
+sudo systemctl restart nginx
+sudo systemctl status nginx
 ```

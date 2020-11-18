@@ -1,31 +1,52 @@
 # FAQ
 
-#### 如何以调试模式启动rethinkdb服务？
+#### 是否有rethinkdb的CLI工具？
 
-```
-systemctl stop rethinkdb-server
-rethinkdb-server console
-```
+有，安装后存在cli命令，通过`rethinkdb -help`查看使用详细
 
-#### 是否可以通过命令行修改rethinkdb后台密码？
+#### 什么时候选择使用RethinkDB？
+当您的应用程序可以从数据的实时提要中受益时，RethinkDB是一个不错的选择。
 
-可以，`rethinkdbctl change_password  admin newpassword`
+查询-响应数据库访问模型在Web上运行良好，因为它直接映射到HTTP的请求-响应。但是，现代应用程序需要直接将数据直接实时发送到客户端。公司从RethinkDB的实时推送架构中受益的用例包括：
+
+- 协作式Web和移动应用程序
+- 流分析应用
+- 多人游戏
+- 实时市场
+- 连接的设备
+- 例如，当用户更改协作设计应用程序中按钮的位置时，服务器必须通知同时在同一项目上工作的其他用户。Web浏览器通过WebSocket和长期存在的HTTP连接来支持这些用例，但是要使数据库系统适应实时需求仍然会带来巨大的工程挑战。
+
+RethinkDB是第一个开放源代码，可扩展的数据库，专门设计用于将数据实时推送到应用程序。它大大减少了构建可伸缩实时应用程序所需的时间和精力。
+
+#### RethinkDB支持哪些语言？
+我们提供Ruby，Python，Java和JavaScript / Node.js的官方驱动程序。社区支持的驱动程序支持十多种其他语言，包括C＃/。NET，Go和PHP。
+
+#### RethinkDB是否支持SQL？
+不支持。但是，RethinkDB的查询语言几乎可以执行SQL所能做的一切，包括表联接和聚合功能，并且功能强大，表达力强且易于学习。  
+ReQL还可以完成SQL无法完成的许多工作，包括将查询与JavaScript表达式和map-reduce混合使用。
+
+#### RethinkDB如何处理写入持久性？
+RethinkDB开箱即用，具有严格的写入持久性，并且在这方面与传统数据库系统相同。默认情况下，只有将写入安全地提交到磁盘后，才会确认写入。
+
+#### 什么时候RethinkDB不是一个好的选择？
+如果您需要全面的ACID支持或强大的架构实施，那么RethinkDB并不是好的选择-在这种情况下，最好使用MySQL或PostgreSQL等关系数据库。
+如果您要进行深入的计算密集型分析，那么最好使用诸如Hadoop之类的系统或诸如Vertica之类的面向列的存储。
+在某些情况下，RethinkDB会权衡写可用性以支持数据一致性。如果高写入可用性至关重要，并且您不介意处理冲突，那么使用Riak这样的Dynamo风格的系统可能会更好。
+
+#### 是否可以通过命令行修改访问密码？
+
+可以，`htpasswd -b /etc/nginx/.htpasswd admin new_password`
 
 #### 如果没有域名是否可以部署 rethinkdb？
+可以，访问`http://服务器公网IP:28015`
 
-#### 数据库 root 用户对应的密码是多少？
+#### admin用户对应的密码是多少？
 
 密码存放在服务器相关文件中：`/credentials/password.txt`
 
-可以，访问`http://服务器公网IP` 即可
-
 #### 是否有可视化的数据库管理工具？
 
-有，内置phpMyAdmin，访问地址：*http://服务器公网IP/phpmyadmin*
-
-#### 如何禁止外界访问phpMyAdmin？
-
-连接服务器，编辑 [phpMyAdmin 配置文件](/zh/stack-components.md#phpmyadmin)，将其中的 `Require all granted` 更改为 `Require ip 192.160.1.0`，然后重启 Apache 服务
+有，访问地址：*http://服务器公网IP:8080*
 
 #### 是否可以修改rethinkdb的源码路径？
 
