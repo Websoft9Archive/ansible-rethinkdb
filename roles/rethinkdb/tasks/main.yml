@@ -53,9 +53,7 @@
     - nginx
     
 - name: Create link 
-  shell: |
-    mkdir -p /data/logs/rethinkdb
-    ln -sf /data/rethinkdb/log_file /data/logs/rethinkdb/log_file
+  shell: ln -sf /data/rethinkdb/log_file /data/logs/rethinkdb
   
 # Check version,
 - block:
