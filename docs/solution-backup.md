@@ -54,3 +54,20 @@ The general manual backup operation steps are as follows:
    ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/phpmyadmin/phpmyadmin-export-websoft9.png)
 3. Put the source code file and database file in the same folder, named according to the date
 4. Backup completed
+
+
+### RethinkDB how to realize data backup and import backup data？
+
+There are two ways of data backup, the compressed format is dump:
+```
+rethinkdb export abc.db
+rethinkdb dump [options]
+
+```
+
+import db：
+
+```
+rethinkdb import -d [options]
+
+```

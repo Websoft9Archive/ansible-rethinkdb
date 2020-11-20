@@ -10,12 +10,6 @@ These accounts are required for rethinkdb image installation and configuration
 * rethinkdb administrator password: stored in the file of your server */credentials/password.txt*
   > If there no password.txt exist, the administrator password is `admin`
 
-## MySQL
-
-* MySQL administrator username: `root`
-* MySQL administrator password: stored in the file of your server */credentials/password.txt*  
-  ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/common/catdbpassword-websoft9.png)
-
 ## Linux
 
 * Host Name: Internet IP or Public IP of your Instance

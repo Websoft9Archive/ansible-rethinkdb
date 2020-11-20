@@ -20,13 +20,6 @@ Nginx 主配置文件： */etc/nginx/nginx.conf*
 Nginx 日志文件： */var/log/nginx*  
 Nginx 伪静态规则目录： */etc/nginx/conf.d/rewrite*
 
-### MYSQL
-
-MySQL 安装路径: */usr/local/mysql*  
-MySQL 数据文件 */data/mysql*  
-MySQL 配置文件: */etc/my.cnf*    
-MySQL 可视化管理地址: *http://服务器公网IP/phpmyadmin*，用户名和密码请见 [账号密码](/zh/stack-accounts.md) 章节。
-
 ## 端口号
 
 在云服务器中，通过 **[安全组设置](https://support.websoft9.com/docs/faq/zh/tech-instance.html)** 来控制（开启或关闭）端口是否可以被外部访问。 
@@ -35,9 +28,9 @@ MySQL 可视化管理地址: *http://服务器公网IP/phpmyadmin*，用户名�
 
 | 名称 | 端口号 | 用途 |  必要性 |
 | --- | --- | --- | --- |
-| HTTP | 15672 | 通过 HTTP 访问 rethinkdb 控制台 | 可选 |
-| TCP | 5672 | epmd | 可选 |
-| TCP | 55672 | Erlang distribution | 可选 |
+| HTTP | 80 | 通过 HTTP 访问 rethinkdb 控制台 | 可选 |
+| HTTP | 28015 | 通过 HTTP 访问 rethinkdb connect | 可选 |
+
 
 ## 版本号
 
@@ -53,16 +46,6 @@ lsb_release -a
 # Nginx  Version
 nginx -V
 
-# Java version
-java -v
-
-# Docker Version
-docker -v
-
-# erlang  Version
-yum info erlang
-apt show erlang
-
 # rethinkdb version
-rethinkdbctl status | grep rethinkdb*
+rethinkdb --version
 ```

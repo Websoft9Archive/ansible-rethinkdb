@@ -24,6 +24,3 @@ yum update -y
 ```
 > This deployment package is preconfigured with a scheduled task for automatic updates. If you want to remove the automatic update, please delete the corresponding Cron
 
-## rethinkdb Upgrade
-
-Refer to the official docs: [Upgrading rethinkdb](https://www.rethinkdb.com/upgrade.html)

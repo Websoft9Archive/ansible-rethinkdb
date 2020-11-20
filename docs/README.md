@@ -6,10 +6,12 @@ home: false
 
 This documentation is provided by [Websoft9](https://www.websoft9.com/), it can help users to acquire skills of rethinkdb Deployment, Installation, Configuration, HTTPS, SMTP, Backup, Upgrade, Connect Instance and more.
 
-[rethinkdb](https://rethinkdb-server.apache.org/) is the most widely deployed open source message broker. With more than 35,000 production deployments of rethinkdb world-wide at small startups and large enterprises, rethinkdb is the most popular open source message broker.
+[RethinkDB](https://rethinkdb.com)  is the open-source, scalable database that makes building realtime apps dramatically easier.
+RethinkDB is the first open-source, scalable JSON database built from the ground up for the realtime web. It inverts the traditional database architecture by exposing an exciting new access model – instead of polling for changes, the developer can tell RethinkDB to continuously push updated query results to applications in realtime. RethinkDB’s realtime push architecture dramatically reduces the time and effort necessary to build scalable realtime apps.
 
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/rethinkdb/rethinkdb-gui-websoft9.png)
+In addition to being designed from the ground up for realtime apps, RethinkDB offers a flexible query language, intuitive operations and monitoring APIs, and is easy to setup and learn.
 
+![](https://libs.websoft9.com/Websoft9/DocsPicture/en/rethinkdb/rethinkdb-main-websoft9.png)
 ---
 
 ## Improve

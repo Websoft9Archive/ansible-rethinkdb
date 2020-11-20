@@ -22,6 +22,3 @@ yum update -y
 > 本部署包已预配置一个用于自动更新的计划任务。如果希望去掉自动更新，请删除对应的Cron
 
 
-## rethinkdb升级
-
-详情参考官方升级文档：[Upgrading rethinkdb](https://www.rethinkdb.com/upgrade.html)

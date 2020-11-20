@@ -8,18 +8,33 @@
 
 日志文件路径为：`/data/logs`。检索关键词 **Failed** 或者 **error** 查看错误
 
+#### 调用表时出现“ ReqlResourceLimitError：数组大小超过限制100000”？
+
+不带索引的订购要求服务器将整个序列加载到一个数组中，默认情况下，该序列限制为100,000个文档。  
+您可以使用该arrayLimit选项运行以临时提高此限制。但是，更有效的选择是使用索引。
+
+#### 插入速度很慢。怎样才能加快速度？
+
+RethinkDB使用安全的默认配置进行写确认。在服务器向客户端确认之前，每次写入都会提交到磁盘。如果您正在运行一个循环将文档  
+插入RethinkDB的线程，则每个插入操作必须等待服务器确认，然后才能进行下一个操作。这会大大降低整体吞吐量。
+此行为类似于任何其他安全数据库系统。您可以采取以下一些步骤来提高RethinkDB中的插入性能。这些准则中的大多数也将适用于其他数据库系统。
+增加并发性。而不是让单个线程在循环中插入数据，而是创建具有多个连接的多个线程。这将允许插入查询的并行化，而无需花费大部分时间等待磁盘确认。
+批量写入。而不是在循环中进行单次写入，而是将组写入在一起。这可以导致吞吐量的显着提高。
+考虑使用软耐用性模式。在软持久性模式下，RethinkDB将在接收到写入之后但在将写入提交到磁盘之前立即确认写入。服务器将使用主内存来吸收写操作，并将新数据在后台刷新到磁盘。
+
+#### Node.js报错？
+
+JavaScript驱动程序当前可用于Node.js版本0.10.0及更高版本。您可以按以下方式检查节点版本：
+node --version
+
+
 #### rethinkdb服务无法启动？
 
-1. 以调试模式运行`rethinkdb-server console`，便可以查看启动状态和错误
-   ```
-   rethinkdb-server console
-   ```
+1. 运行`systemctl status rethinkdb`，便可以查看启动状态和错误
+
 2. 打开日志文件：*/data/logs/rethinkdb-server*，检索 **failed** 关键词，分析错误原因
 
 
 #### 在Chrome下修改密码后报错？
 
 这个并不是服务器端的问题，只要更新浏览器即可。
-
-![chrome error of rethinkdb](https://libs.websoft9.com/Websoft9/DocsPicture/zh/rethinkdb/rethinkdb-chromeerror-websoft9.png)
-

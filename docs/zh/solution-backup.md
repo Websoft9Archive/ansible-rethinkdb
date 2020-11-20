@@ -59,3 +59,21 @@ sidebarDepth: 3
    ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/mysql/phpmyadmin-export-websoft9.png)
 3. 将程序文件和数据库文件放到同一个文件夹，根据日期命名
 4. 备份工作完成
+
+### RethinkDB如何实现数据备份以及将备份数据导入？
+
+数据备份有两种方式，压缩格式的为dump:
+```
+# 普通导出备份
+rethinkdb export abc.db
+# 导出压缩文件
+rethinkdb dump [options]
+
+```
+
+导入数据库：
+
+```
+rethinkdb import -d [options]
+
+```

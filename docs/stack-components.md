@@ -16,13 +16,6 @@ Nginx main configuration file: */etc/nginx/nginx.conf*
 Nginx logs file: */var/log/nginx*  
 Nginx rewrite rules directory: */etc/nginx/conf.d/rewrite* 
 
-### MYSQL
-
-MySQL installation directory: */usr/local/mysql*  
-MySQL data directory: */data/mysql*  
-MySQL configuration file: */etc/my.cnf*    
-MySQL Web Management URL: *http://Internet IP/9panel*, get credential from [Username and Password](/stack-accounts.md)
-
 ## Ports
 
 You can control(open or shut down) ports by **[Security Group Setting](https://support.websoft9.com/docs/faq/zh/tech-instance.html)** of your Cloud Server whether the port can be accessed from Internet.
@@ -31,9 +24,9 @@ You can run the cmd `netstat -tunlp` to list all used ports, and we list the fol
 
 | Name | Number | Use |  Necessity |
 | --- | --- | --- | --- |
-| HTTP | 8161 | HTTP requests for rethinkdb Console| Required |
-| HTTPS | 5672 | epmd | Optional |
-| TCP | 55672 | Erlang distribution | Optional |
+| HTTP | 80 | HTTP requests for rethinkdb Console| Required |
+| HTTP | 28015 | HTTP requests for rethinkdb connect | Required |
+
 
 
 ## Version
@@ -50,16 +43,7 @@ lsb_release -a
 # Nginx  Version
 nginx -V
 
-# Java version
-java -v
-
-# Docker Version
-docker -v
-
-# erlang  Version
-yum info erlang
-apt show erlang
 
 # rethinkdb version
-rethinkdbctl status | grep rethinkdb*
+rethinkdb --version
 ```

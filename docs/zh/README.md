@@ -6,9 +6,9 @@ home: false
 
 本文档由 [Websoft9](https://www.websoft9.com/) 公司提供，用于指导用户学习 rethinkdb 的安装部署与基本运维技术，包括：rethinkdb部署、初始化安装、环境配置、HTTPS、SMTP、备份升级和连接云服务器操作等基本操作。
 
-[rethinkdb](https://www.rethinkdb.com) 流行的开源消息队列系统，用erlang语言开，是AMQP（高级消息队列协议）的标准实现。用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面表现不俗。
+[RethinkDB](https://rethinkdb.com) 是开源的，可扩展的数据库，可大大简化构建实时应用程序的过程。RethinkDB集成了数据库技术的最新进展。它具有现代的分布式体系结构，高度优化的缓冲区高速缓存和最新的存储引擎。所有这些组件协同工作，以创建一个健壮，可扩展的高性能数据库。RethinkDB是第一个为实时Web从头开始构建的开源可扩展JSON数据库。通过公开一个令人兴奋的新访问模型，它颠覆了传统的数据库体系结构–开发人员可以告诉RethinkDB将更新的查询结果连续不断地实时推送到应用程序，而不必轮询更改。RethinkDB的实时推送体系结构大大减少了构建可伸缩实时应用程序所需的时间和精力。
 
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/rethinkdb/rethinkdb-gui-websoft9.png)
+![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/rethinkdb/rethinkdb-main-websoft9.png)
 
 ---
 
