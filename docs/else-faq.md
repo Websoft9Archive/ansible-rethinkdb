@@ -53,7 +53,7 @@ The password is stored in the server related file: `/credentials/password.txt`
 
 #### Is there a web-base GUI database management tools?
 
-Yes, visit by *http://Internet IP:8080*
+Yes, visit by *http://Internet IP*
 
 #### Is it possible to modify the source path of rethinkdb?
 
