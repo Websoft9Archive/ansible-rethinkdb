@@ -4,7 +4,7 @@
 
 ## 配置
 
-参考官方方案：https://www.rethinkdb.com/configure.html
+参考官方方案：https://rethinkdb.com
 
 ## 域名绑定
 
