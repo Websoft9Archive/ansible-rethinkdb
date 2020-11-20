@@ -5,7 +5,7 @@
 # configure rethinkdb
 - name: Create rethinkdb data directory
   file:
-    path: /data/wwwroot/rethindb_data
+    path: /data/rethindb
     state: directory
     recurse: yes
     owner: rethinkdb
@@ -13,8 +13,8 @@
 
 - name: Add rethinkdb data
   shell: | 
-    rethinkdb create -d /data/wwwroot/rethindb_data 
-    chown -R rethinkdb.rethinkdb /data/wwwroot/rethindb_data 
+    rethinkdb create -d /data/rethindb
+    chown -R rethinkdb.rethinkdb /data/rethindb
   failed_when: false
 
 - name: Copy rethinkdb configure file
@@ -29,7 +29,7 @@
   lineinfile:
     path: /etc/rethinkdb/instances.d/instance.conf
     regexp: '^# directory=/var/lib/rethinkdb/default'
-    line: 'directory=/data/wwwroot/rethindb_data'
+    line: 'directory=/data/rethindb'
     state: present
     backrefs: yes
 
@@ -51,7 +51,12 @@
   with_items:
     - rethinkdb
     - nginx
-
+    
+- name: Create link 
+  shell: |
+    mkdir -p /data/logs/rethinkdb
+    ln -sf /data/rethinkdb/log_file /data/logs/rethinkdb/log_file
+  
 # Check version,
 - block:
   - name: Check Rethinkdb Version
