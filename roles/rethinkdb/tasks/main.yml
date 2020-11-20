@@ -3,14 +3,18 @@
   include: "{{ansible_os_family}}.yml"
 
 # configure rethinkdb
-- name: Create rethinkdb data directory
+- name: Create rethinkdb data and logs directory
   file:
-    path: /data/rethindb
+    path: {{item}}
     state: directory
     recurse: yes
     owner: rethinkdb
     group: rethinkdb
-
+    mode: 0755
+  with_items:
+    - /data/rethinkdb
+    - /data/logs/rethinkdb 
+   
 - name: Add rethinkdb data
   shell: | 
     rethinkdb create -d /data/rethindb
@@ -28,11 +32,19 @@
 - name: Configure rethinkdb data dir
   lineinfile:
     path: /etc/rethinkdb/instances.d/instance.conf
+    regexp: '^# log-file=/var/log/rethinkdb'
+    line: 'log-file=/data/logs/rethinkdb'
+    state: present
+    backrefs: yes
+    
+- name: Configure rethinkdb data dir
+  lineinfile:
+    path: /etc/rethinkdb/instances.d/instance.conf
     regexp: '^# directory=/var/lib/rethinkdb/default'
     line: 'directory=/data/rethindb'
     state: present
     backrefs: yes
-
+    
 - name: Insert nginx login validate 
   blockinfile:
     path: /etc/nginx/conf.d/default.conf
@@ -51,11 +63,6 @@
   with_items:
     - rethinkdb
     - nginx
-    
-- name: Create link 
-  shell: |
-    mkdir -p /data/logs/rethinkdb
-    ln -sf /data/rethinkdb/log_file /data/logs/rethinkdb/log_file
   
 # Check version,
 - block:
@@ -67,4 +74,3 @@
   shell: systemctl status rethinkdb | grep Active*
   register: check_rethinkdb_service
   notify: check_rethinkdb_service
-
