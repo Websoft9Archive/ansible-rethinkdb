@@ -11,6 +11,14 @@
     owner: rethinkdb
     group: rethinkdb
 
+- name: Create rethinkdb logs file
+  file:
+    path: /data/logs/rethinkdb
+    state: file
+    owner: rethinkdb
+    group: rethinkdb
+    mode: '0755'
+    
 - name: Add rethinkdb data
   shell: | 
     rethinkdb create -d /data/rethindb
@@ -24,7 +32,15 @@
   copy:
     src: rethinkdb.service
     dest: /lib/systemd/system/rethinkdb.service
-
+    
+- name: Configure rethinkdb logs file
+  lineinfile:
+    path: /etc/rethinkdb/instances.d/instance.conf
+    regexp: '^# log-file=/var/log/rethinkdb'
+    line: 'log-file=/data/logs/rethinkdb'
+    state: present
+    backrefs: yes
+    
 - name: Configure rethinkdb data dir
   lineinfile:
     path: /etc/rethinkdb/instances.d/instance.conf
@@ -67,4 +83,3 @@
   shell: systemctl status rethinkdb | grep Active*
   register: check_rethinkdb_service
   notify: check_rethinkdb_service
-
