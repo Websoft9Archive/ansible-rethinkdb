@@ -1,15 +1,55 @@
+Ansible Role: RethinkDB
+=========
 
-## role 结构
+This role is for you to install **RethinkDB** and related management tools
 
-files: 需要上传的文件
-handlers: 服务重启
-tasks: 核心任务部分
-templates: 模板文件,多用于需要动态改变的配置文件
-meta: 保存当前roles所依赖的其他roles信息(当前roles运行前所需要的roles)
-defaults: 保存当前roles默认变量
+If you want this role to support more applications, you can submit Issues** for us.
 
-## roles 编写注意事项:
+## Requirements
 
- 1. 尽量可以单独使用
- 2. 不能单独使用的,一定要在 meta中声明依赖关系,比如在php需要依赖apache,写法看本模板中example中的 meta 
- 3. 上传的配置文件存在多版本问题 使用template模块上传 配置文件差异使用jinja模板处理
+Make sure these requirements need before the installation:
+
+| **Items**      | **Details** |
+| ------------------| ------------------|
+| Operating system | CentOS7.x Ubuntu18.04 |
+| Python version | Python2  |
+| Python components |   |
+| Runtime | No |
+
+## Related roles
+
+This Role does not depend on other role variables in syntax, but it depend on other role before:
+
+```
+roles:
+  - { role: role_common }
+  - { role：role_docker }
+```
+
+
+## Variables
+
+The main variables of this Role and how to use them are as follows:
+
+| **Items**      | **Details** | **Format**  | **Need to assignment** |
+| ------------------| ------------------|-----|-----|
+|  | | List | No |
+
+
+Note: 
+
+
+## Example
+
+```
+
+  
+```
+
+## License
+
+[LGPL-3.0](/License.md), Additional Terms: It is not allowed to publish free or paid image based on this repository in any Cloud platform's Marketplace.
+
+Copyright (c) 2016-present, Websoft9
+
+## FAQ
