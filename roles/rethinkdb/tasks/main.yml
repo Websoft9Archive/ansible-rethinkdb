@@ -67,7 +67,12 @@
   with_items:
     - rethinkdb
     - nginx
-
+    
+- name: Install rethinkdb
+  pip: 
+    name: rethinkdb
+    executable: pip3
+    
 # Check version,
 - block:
   - name: Check Rethinkdb Version
