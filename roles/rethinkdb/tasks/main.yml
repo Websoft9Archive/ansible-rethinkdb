@@ -68,6 +68,12 @@
     - rethinkdb
     - nginx
 
+# connect rethinkdb
+- name: Install rethinkdb
+  pip: 
+    name: rethinkdb
+    executable: pip3
+
 # Check version,
 - block:
   - name: Check Rethinkdb Version
