@@ -2,6 +2,11 @@ nginx_certbot: True
 
 nginx_reverse_proxy_port: "8080"
 
+init_db: 
+  rethinkdb:
+    admin: admin
+    password: "123456"
+    
 init_application:
   rethinkdb:
     username: "admin"
