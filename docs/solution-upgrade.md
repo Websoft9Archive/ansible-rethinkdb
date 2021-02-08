@@ -17,10 +17,14 @@ Run an update command to complete the system update:
 
 ``` shell
 #For Ubuntu&Debian
-apt update && apt upgrade -y
+sudo apt update && apt upgrade -y
 
 #For Centos&Redhat
-yum update -y
+sudo yum update -y
 ```
-> This deployment package is preconfigured with a scheduled task for automatic updates. If you want to remove the automatic update, please delete the corresponding Cron
+> This deployment package is pre-configured with a scheduled task for automatic updates. If you want to remove the automatic update, please delete the corresponding Cron
+
+## RethinkDB Upgrade
+
+There no upgrade cli from RethinkDB documentation, but it have [Migrating](https://rethinkdb.com/docs/migration/) solution for upgrade
 

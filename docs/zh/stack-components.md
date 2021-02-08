@@ -4,21 +4,22 @@ sidebarDepth: 3
 
 # 参数
 
-rethinkdb 预装包包含 rethinkdb 运行所需一序列支撑软件（简称为“组件”），下面列出主要组件名称、安装路径、配置文件地址、端口、版本等重要的信息。
+RethinkDB 预装包包含 RethinkDB 运行所需一序列支撑软件（简称为“组件”），下面列出主要组件名称、安装路径、配置文件地址、端口、版本等重要的信息。
 
 ## 路径
 
-### rethinkdb
+### RethinkDB
 
-rethinkdb 安装目录： */data/rethinkdb*  
-rethinkdb 日志目录： */data/logs/rethinkdb*  
+RethinkDB 安装目录： */data/rethinkdb*  
+RethinkDB 日志目录： */data/logs/rethinkdb*  
 
 ### Nginx
 
 Nginx 虚拟主机配置文件：*/etc/nginx/conf.d/default.conf*  
 Nginx 主配置文件： */etc/nginx/nginx.conf*  
 Nginx 日志文件： */var/log/nginx*  
-Nginx 伪静态规则目录： */etc/nginx/conf.d/rewrite*
+Nginx 伪静态规则目录： */etc/nginx/conf.d/rewrite*  
+Nginx 验证访问文件：*/etc/nginx/.htpasswd/htpasswd.conf*  
 
 ## 端口号
 
@@ -28,8 +29,8 @@ Nginx 伪静态规则目录： */etc/nginx/conf.d/rewrite*
 
 | 名称 | 端口号 | 用途 |  必要性 |
 | --- | --- | --- | --- |
-| HTTP | 80 | 通过 HTTP 访问 rethinkdb 控制台 | 可选 |
-| HTTP | 28015 | 通过 HTTP 访问 rethinkdb connect | 可选 |
+| HTTP | 80 | 通过 HTTP 访问 RethinkDB 控制台 | 可选 |
+| TCP | 28015 | RethinkDB connect | 可选 |
 
 
 ## 版本号

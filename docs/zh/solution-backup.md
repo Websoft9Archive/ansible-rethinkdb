@@ -52,28 +52,21 @@ sidebarDepth: 3
 - 技能要求：非常容易
 - 自动化：无
 ```
-通用的手动备份操作步骤如下：
 
-1. 通过 WinSCP 将网站目录（*/data/wwwroot/*）**压缩后**再完整的下载到本地
-2. 通过 phpMyAdmin 逐个导出数据库
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/mysql/phpmyadmin-export-websoft9.png)
-3. 将程序文件和数据库文件放到同一个文件夹，根据日期命名
-4. 备份工作完成
+RethinkDB 主要通过导出的实现备份，通过导入实现恢复：
 
-### RethinkDB如何实现数据备份以及将备份数据导入？
+#### RethinkDB 备份
 
-数据备份有两种方式，压缩格式的为dump:
 ```
-# 普通导出备份
+# 导出普通数据库文件
 rethinkdb export abc.db
-# 导出压缩文件
-rethinkdb dump [options]
 
+# 导出压缩格式数据库文件
+rethinkdb dump [options]
 ```
 
-导入数据库：
+#### RethinkDB 恢复
 
 ```
 rethinkdb import -d [options]
-
 ```

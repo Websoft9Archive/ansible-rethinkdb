@@ -47,27 +47,21 @@ Manual backup for application is based on the **Exporting source code and databa
 - Skill requirement: Easy 
 - Automation: manual
 ```
-The general manual backup operation steps are as follows:
 
-1. Just compression and download the entire */data/wwwroot* directory by SFTP 
-2. Export LAMP's database by [phpMyAdmin](/admin-mysql.md)
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/phpmyadmin/phpmyadmin-export-websoft9.png)
-3. Put the source code file and database file in the same folder, named according to the date
-4. Backup completed
+You can use `export/import` for RethinkDB backup and restore
 
+#### RethinkDB Backup
 
-### RethinkDB how to realize data backup and import backup data？
-
-There are two ways of data backup, the compressed format is dump:
 ```
+# export the db file
 rethinkdb export abc.db
-rethinkdb dump [options]
 
+# export the dump file
+rethinkdb dump [options]
 ```
 
-import db：
+#### RethinkDB Restore
 
 ```
 rethinkdb import -d [options]
-
 ```

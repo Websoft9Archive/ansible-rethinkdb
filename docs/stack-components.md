@@ -1,20 +1,21 @@
 # Parameters
 
-The rethinkdb deployment package contains a sequence software (referred to as "components") required for rethinkdb to run. The important information such as the component name, installation directory path, configuration file path, port, version, etc. are listed below.
+The Rethinkdb deployment package contains a sequence software (referred to as "components") required for Rethinkdb to run. The important information such as the component name, installation directory path, configuration file path, port, version, etc. are listed below.
 
 ## Path
 
-### rethinkdb
+### Rethinkdb
 
-rethinkdb installation directory:  */data/rethinkdb*  
-rethinkdb logs directory:  */data/logs/rethinkdb*  
+Rethinkdb installation directory:  */data/rethinkdb*  
+Rethinkdb logs directory:  */data/logs/rethinkdb*  
 
 ### Nginx
 
 Nginx vhost configuration file: */etc/nginx/conf.d/default.conf*    
 Nginx main configuration file: */etc/nginx/nginx.conf*   
 Nginx logs file: */var/log/nginx*  
-Nginx rewrite rules directory: */etc/nginx/conf.d/rewrite* 
+Nginx rewrite rules directory: */etc/nginx/conf.d/rewrite*  
+Nginx htpasswd file: */etc/nginx/.htpasswd/htpasswd.conf*
 
 ## Ports
 
@@ -24,8 +25,8 @@ You can run the cmd `netstat -tunlp` to list all used ports, and we list the fol
 
 | Name | Number | Use |  Necessity |
 | --- | --- | --- | --- |
-| HTTP | 80 | HTTP requests for rethinkdb Console| Required |
-| HTTP | 28015 | HTTP requests for rethinkdb connect | Required |
+| HTTP | 80 | HTTP requests for Rethinkdb Console| Required |
+| TCP | 28015 | Rethinkdb connect | Required |
 
 
 
@@ -42,7 +43,6 @@ lsb_release -a
 
 # Nginx  Version
 nginx -V
-
 
 # rethinkdb version
 rethinkdb --version

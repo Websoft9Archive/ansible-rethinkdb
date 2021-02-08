@@ -2,10 +2,6 @@
 
 Each of the following solutions has been proven to be effective and we hope to be helpful to you.
 
-## Configuration 
-
-Refer to the official docs: https://rethinkdb.com/
-
 ## Domain binding
 
 The precondition for binding a domain is that rethinkdb can accessed by domain name.
@@ -19,10 +15,17 @@ rethinkdb domain name binding steps:
    ```text
    server
    {
-   listen 80;
-   server_name www.example.com;  # 此处修改为你的域名
-   index index.html index.htm index.php;
-   root  /data/wwwroot/www.example.com;
+    listen 80;
+    server_name example.yourdomain.com; # set your DNS here
+    location / {
+        proxy_pass  http://127.0.0.1:8080; 
+   ...
    ...
    }
    ```
+
+## Reset RethinkDB console password
+
+```
+htpasswd -b /etc/nginx/.htpasswd admin new_password
+```

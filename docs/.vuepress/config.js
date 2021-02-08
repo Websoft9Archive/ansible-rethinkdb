@@ -6,20 +6,20 @@ base: '/docs/rethinkdb/',
 dest: 'html/rethinkdb',
 
 head: [
-  ['link', { rel: 'icon', href: '/favcon.ico' }]
+  ['link', { rel: 'icon', href: '/favicon.ico' }]
 ],
 
 //vuepress多语言，区别于主题多语言
 locales: {
     '/': {
       lang: 'en-US', // 将会被设置为 <html> 的 lang 属性
-      title: 'rethinkdb Administrator Guide',
-      description: 'You can get the Installation of Image,Administrator,Configuration of the rethinkdb from this documentation.'
+      title: 'RethinkDB Administrator Guide',
+      description: 'You can get the Installation of Image,Administrator,Configuration of the RethinkDB from this documentation.'
     },
     '/zh/': {
       lang: 'zh-CN',
-      title: 'rethinkdb 管理员手册',
-      description: '本文档由 Websoft9 公司提供，用于指导用户学习 rethinkdb 的安装部署与基本运维技术，包括：部署、初始化安装、环境配置、HTTPS、SMTP、备份升级和连接云服务器操作等基本操作。'
+      title: 'RethinkDB 管理员手册',
+      description: '本文档由 Websoft9 公司提供，用于指导用户学习 RethinkDB 的安装部署与基本运维技术，包括：部署、初始化安装、环境配置、HTTPS、SMTP、备份升级和连接云服务器操作等基本操作。'
     }
 },
 

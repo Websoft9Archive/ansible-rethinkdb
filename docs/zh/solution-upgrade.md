@@ -19,6 +19,10 @@ apt update && apt upgrade -y
 #For Centos&Redhat
 yum update -y
 ```
-> 本部署包已预配置一个用于自动更新的计划任务。如果希望去掉自动更新，请删除对应的Cron
+> 本部署包已预配置一个用于自动更新的计划任务。如果希望去掉自动更新，请删除对应的 Cron
+
+## RethinkDB 升级
+
+官方没有提供版本升级命令，只提供了一个升级后的数据迁移方案：[Migrating](https://rethinkdb.com/docs/migration/)
 
 
