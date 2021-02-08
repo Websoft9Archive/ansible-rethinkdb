@@ -25,7 +25,7 @@
 
 本项目通过[RethinkDB 官方仓库](https://download.rethinkdb.com/)安装，每次安装均可保证为最新版本。  
 
-仓库中提供的各种版本号[查看方式](https://download.rethinkdb.com/#browse/browse:centos:7)。
+RethinkDB仓库是基于[Sonatype Nexus Repository Manager](https://www.sonatype.com/nexus/repository-oss)，非常方便查看[点击此处](https://download.rethinkdb.com/#browse/browse:centos:7)。
 
 ## 安装指南
 
