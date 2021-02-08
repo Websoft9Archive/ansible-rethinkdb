@@ -20,12 +20,9 @@ rethinkdb domain name binding steps:
     location / {
         proxy_pass  http://127.0.0.1:8080; 
    ...
-   ...
    }
    ```
 
 ## Reset RethinkDB console password
 
-```
-htpasswd -b /etc/nginx/.htpasswd admin new_password
-```
+Run `htpasswd -b /etc/nginx/.htpasswd admin new_password` command to reset password
