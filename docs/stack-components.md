@@ -25,8 +25,8 @@ You can run the cmd `netstat -tunlp` to list all used ports, and we list the fol
 
 | Name | Number | Use |  Necessity |
 | --- | --- | --- | --- |
-| HTTP | 80 | HTTP requests for Rethinkdb Console| Required |
-| TCP | 28015 | Rethinkdb connect | Required |
+| HTTP | 80 | HTTP requests for Rethinkdb Console| Optional |
+| TCP | 28015 | Rethinkdb connect | Optional |
 
 
 
