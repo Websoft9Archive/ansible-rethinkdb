@@ -10,7 +10,7 @@ These accounts are required for TensorFlow image installation and configuration
 * Rethinkdb administrator username: `admin`
 * Rethinkdb administrator password: stored in the file of your server */credentials/password.txt*
 
-> This solution use [Nginx htpasswd](/stack-components.md#nginx) to manage user files for TensorBoard basic authentication
+> This solution use [Nginx htpasswd](/stack-components.md#nginx) to manage user files for RethinkDB basic authentication
 
 ## Linux
 
@@ -18,12 +18,12 @@ These accounts are required for TensorFlow image installation and configuration
 * Connect by: Online SSH on Cloud Console or SFTP/SSH tools on your local computer
 * Password: It was set by yourself when created instance.
 * Username: Different Cloud Platform has differences.
-   |  Cloud Platform   |  Administrator Username   | Other |
-   | --- | --- | --- |
-   |  Azure   |  It was set by yourself when created instance.   | [How to enable root access?](https://support.websoft9.com/docs/azure/server-login.html#sample2-enable-the-root-username) |
-   |  AWS CentOS   |  centos   | [How to enable root access?](https://support.websoft9.com/docs/aws/server-login.html#sample2-enable-the-root-username) |
-   |  AWS AmazonLinux   |  ec2-user   | [How to enable root access?](https://support.websoft9.com/docs/aws/server-login.html#sample2-enable-the-root-username) |
-   |  AWS Ubuntu   |  ubuntu   | [How to enable root access?](https://support.websoft9.com/docs/aws/server-login.html#sample2-enable-the-root-username) |
-   |  Alibaba Cloud, HUAWEI CLOUD, Tencent Cloud |  root   |
+   |  Cloud Platform   | OS |  Administrator Username   | Other |
+   | --- | --- | --- | --- |
+   |  Azure   | ALL |  It was set by yourself when created instance.   | [How to enable root access?](https://support.websoft9.com/docs/azure/server-login.html#sample2-enable-the-root-username) |
+   |  AWS  | CentOS |  centos   | [How to enable root access?](https://support.websoft9.com/docs/aws/server-login.html#sample2-enable-the-root-username) |
+   |  AWS   | Amazon Linux |  ec2-user   | [How to enable root access?](https://support.websoft9.com/docs/aws/server-login.html#sample2-enable-the-root-username) |
+   |  AWS   | Ubuntu |  ubuntu   | [How to enable root access?](https://support.websoft9.com/docs/aws/server-login.html#sample2-enable-the-root-username) |
+   |  Alibaba Cloud, HUAWEI CLOUD, Tencent Cloud | ALL |  root   ||
 
    > If you forgot the password of Linux, reset it on Cloud Console.
