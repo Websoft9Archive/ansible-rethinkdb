@@ -51,8 +51,16 @@ bind=0.0.0.0
 
 1. 以 admin 用户身份连接数据库
 
+```
+from rethinkdb import r
+r.connect('localhost', 28015).repl()
+```
+
 2. 新增用户名和密码
 
+```
+r.db('rethinkdb').table('users').insert({id: 'bob', password: 'secret'})
+```
 
 ## 重置密码
 
@@ -61,5 +69,12 @@ bind=0.0.0.0
 两者的操作步骤类似：
 
 1. 登录 RethinkDB Web 界面
+ ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/rethinkdb/rethinkdb-gui-websoft9.png)
 
-2. 在【Data explorer】下输入重置密码命令
+2. 在【Data explorer】下输入重置密码命令，点击【run】执行
+
+```
+r.db('rethinkdb').table('users').get('admin').update({password: 'newpassword'})
+
+```
+ ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/rethinkdb/rethinkdb-editpassword-websoft9.png)
