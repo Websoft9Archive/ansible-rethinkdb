@@ -5,12 +5,18 @@ You use the **SSH** to connect your Server and run the command `sudo cat /creden
 ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/common/catdbpassword-websoft9.png)
 
 These accounts are required for TensorFlow image installation and configuration
-## Rethinkdb
+
+## Rethinkdb WebUI
 
 * Rethinkdb administrator username: `admin`
 * Rethinkdb administrator password: stored in the file of your server */credentials/password.txt*
 
 > This solution use [Nginx htpasswd](/stack-components.md#nginx) to manage user files for RethinkDB basic authentication
+
+## Rethinkdb
+
+* Rethinkdb administrator username: `admin`
+* Rethinkdb administrator password: stored in the file of your server */credentials/password.txt*
 
 ## Linux
 
