@@ -44,3 +44,22 @@ RethinkDB 远程访问的开关存储在：*/etc/rethinkdb/instances.d/instance.
 ```
 bind=0.0.0.0
 ```
+
+## 用户管理
+
+下面以 Python 客户端新增一个用户并设置其初始密码作为范例进行说明
+
+1. 以 admin 用户身份连接数据库
+
+2. 新增用户名和密码
+
+
+## 重置密码
+
+常用的 RethinkDB 重置密码相关的操作主要有修改密码和找回密码两种方式。  
+
+两者的操作步骤类似：
+
+1. 登录 RethinkDB Web 界面
+
+2. 在【Data explorer】下输入重置密码命令
