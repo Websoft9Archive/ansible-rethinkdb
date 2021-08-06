@@ -39,10 +39,11 @@
 
 RethinkDB 远程访问的开关存储在：*/etc/rethinkdb/instances.d/instance.conf* 文件中。  
 
-只需加入如下的配置段，然后重启服务，即可开启远程访问。
+只需执行下面命令，然后重启服务，即可开启远程访问。
 
 ```
-bind=0.0.0.0
+sudo sed -n "s/^#bind=/bind=0.0.0.0/g" /etc/rethinkdb/instances.d/instance.conf
+
 ```
 
 ## 用户管理
