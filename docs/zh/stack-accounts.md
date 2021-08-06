@@ -13,6 +13,11 @@
 
 > 本部署方案通过 [Nginx 验证访问](/zh/stack-components.md#nginx)控制 RethinkDB 控制台的访问
 
+## RethinkDB
+
+* 管理员账号: `admin`
+* 管理员密码: 存储在您的服务器中的文件中 */credentials/password.txt* 
+
 ## Linux
 
 * 主机地址：服务公网IP地址
