@@ -34,3 +34,13 @@
    ```
    sudo systemctl restart nginx
    ```
+
+## 远程访问
+
+RethinkDB 远程访问的开关存储在：*/etc/rethinkdb/instances.d/instance.conf* 文件中。  
+
+只需加入如下的配置段，然后重启服务，即可开启远程访问。
+
+```
+bind=0.0.0.0
+```

@@ -26,3 +26,19 @@ rethinkdb domain name binding steps:
 ## Reset RethinkDB console password
 
 Run `htpasswd -b /etc/nginx/.htpasswd admin new_password` command to reset password
+
+
+## Remote Connection
+
+
+RethinkDB remote connection is set from file: */etc/rethinkdb/instances.d/instance.conf*  
+
+1. Add the below line in this file
+   ```
+   bind=0.0.0.0
+   ```
+
+2. Restart RethinkDB service
+   ```
+   sudo systemctl restart rethinkdb
+   ```

@@ -1,6 +1,8 @@
 # CLI
 
-RethinkDB 提供了强大的的命令行工具 `rethinkdb`  
+## 服务端
+
+RethinkDB 提供了强大的的**服务端**命令行工具 `rethinkdb`  
 
 ```
 $rethinkdb -h
@@ -143,3 +145,24 @@ There are a number of subcommands for more specific tasks:
 
 For more information, run 'rethinkdb help [subcommand]'.
 ```
+
+## 客户端
+
+RethinkDB 官方没有提供客户端 CLI，但提供了Python, Java, Node 等大部分开发语言的 [RethinkDB client drivers](https://rethinkdb.com/docs/install-drivers/)。  
+
+用户通过这些 drivers 以程序的方式连接 RethinkDB 服务，然后进行场景的数据库操作。  
+
+下面以 Python 为例描述如何具体使用：
+
+1. 安装 rethinkdb 驱动
+   ```
+   pip install rethinkdb
+   ```
+
+2. 编写 Python 程序，连接 RethinkDB 服务器
+   ```
+   from rethinkdb import r
+   r.connect('localhost', 28015).repl()
+   r.db('test').table_create('tv_shows').run()
+   r.table('tv_shows').insert({ 'name': 'Star Trek TNG' }).run()
+   ```

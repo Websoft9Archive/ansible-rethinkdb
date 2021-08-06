@@ -4,6 +4,10 @@
 
 有，安装后存在cli命令，通过 `rethinkdb -h`查看使用详细
 
+#### RethinkDB支持哪些语言？
+
+我们提供Ruby，Python，Java和JavaScript / Node.js的官方驱动程序。社区支持的驱动程序支持十多种其他语言，包括C＃/。NET，Go和PHP。
+
 #### 是否可通过命令行修改 RethinkDB 控制台密码？
 
 可以，运行下面的命令即可：
