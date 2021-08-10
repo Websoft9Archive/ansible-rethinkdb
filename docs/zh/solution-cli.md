@@ -148,7 +148,7 @@ For more information, run 'rethinkdb help [subcommand]'.
 
 ## 客户端
 
-RethinkDB 官方没有提供客户端 CLI，但提供了Python, Java, Node 等大部分开发语言的 [RethinkDB client drivers](https://rethinkdb.com/docs/install-drivers/)。  
+RethinkDB 官方没有客户端 CLI，但提供了Python, Java, Node 等开发语言的 [RethinkDB client drivers](https://rethinkdb.com/docs/install-drivers/)。  
 
 用户通过这些 drivers 以程序的方式连接 RethinkDB 服务，然后进行场景的数据库操作。  
 
@@ -156,7 +156,7 @@ RethinkDB 官方没有提供客户端 CLI，但提供了Python, Java, Node 等�
 
 1. 安装 rethinkdb 驱动
    ```
-   pip install rethinkdb
+   pip3 install rethinkdb
    ```
 
 2. 编写 Python 程序，连接 RethinkDB 服务器

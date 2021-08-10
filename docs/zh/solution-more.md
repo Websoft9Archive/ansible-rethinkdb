@@ -43,39 +43,41 @@ RethinkDB 远程访问的开关存储在：*/etc/rethinkdb/instances.d/instance.
 
 ```
 sudo sed -n "s/^#bind=/bind=0.0.0.0/g" /etc/rethinkdb/instances.d/instance.conf
-
 ```
 
 ## 用户管理
 
 下面以 Python 客户端新增一个用户并设置其初始密码作为范例进行说明
 
-1. 以 admin 用户身份连接数据库
+1. 以 `admin` 用户身份连接数据库
+   ```
+   from rethinkdb import r
 
-```
-from rethinkdb import r
-r.connect('localhost', 28015).repl()
-```
+   # 无密码连接
+   r.connect('localhost', 28015).repl()
+
+   # 有密码连接
+   r.connect('localhost', 28015, password='123456').repl()
+   ```
 
 2. 新增用户名和密码
-
-```
-r.db('rethinkdb').table('users').insert({id: 'bob', password: 'secret'})
-```
+   ```
+   r.db('rethinkdb').table('users').insert({id: 'bob', password: 'secret'})
+   ```
 
 ## 重置密码
 
-常用的 RethinkDB 重置密码相关的操作主要有修改密码和找回密码两种方式。  
+常用的 RethinkDB 重置密码相关的操作主要有修改密码和清空密码（将密码设置为空）两种方式。  
 
-两者的操作步骤类似：
+1. 登录 RethinkDB Web 界面，在【Data explorer】下输入所需的命令
 
-1. 登录 RethinkDB Web 界面
- ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/rethinkdb/rethinkdb-gui-websoft9.png)
+   ```
+   # 修改密码命令
+   r.db('rethinkdb').table('users').get('admin').update({password: 'newpassword'})
 
-2. 在【Data explorer】下输入重置密码命令，点击【run】执行
+   # 清空密码命令
+   r.db('rethinkdb').table('users').get('admin').update({password: false})
+   ```
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/rethinkdb/rethinkdb-editpassword-websoft9.png)
 
-```
-r.db('rethinkdb').table('users').get('admin').update({password: 'newpassword'})
-
-```
- ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/rethinkdb/rethinkdb-editpassword-websoft9.png)
+2. 点击【run】后生效

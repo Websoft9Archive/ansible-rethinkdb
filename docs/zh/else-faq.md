@@ -4,6 +4,14 @@
 
 有，安装后存在cli命令，通过 `rethinkdb -h`查看使用详细
 
+#### `rethinkdb repl` 命令如何采用密码登录？
+
+```
+rethinkdb repl --password-file /tmp/pw
+```
+
+其中 /tmp/pw 为存放密码明文的文件。
+
 #### RethinkDB支持哪些语言？
 
 我们提供Ruby，Python，Java和JavaScript / Node.js的官方驱动程序。社区支持的驱动程序支持十多种其他语言，包括C＃/。NET，Go和PHP。
